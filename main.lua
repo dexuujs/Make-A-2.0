@@ -21,6 +21,7 @@ function createBtn(imgID, name)
     local newBtn = bar.Servers:Clone()
     newBtn.Name = name
     newBtn.Image = imgID
+    return newBtn
 end
 
-createBtn("rbxassetid://18518485889", "Tutorial")
+local tutBtn = createBtn("rbxassetid://18518485889", "Tutorial")
