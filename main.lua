@@ -1,28 +1,31 @@
--- Define paths
---[[
-⚠️ WARNING ⚠️
-This code is purely for making life easier and i DO NOT promote/support exploiting in ANY WAYS. This was originally created only as a SUGGESTION TO THE OWNER.
-⚠️ WARNING ⚠️
-]]
---[[
-To-do: Make the color accurate and see if MaS does the MEnter - MExit color changes itself
-]]
---[[
-local PATH_LOBBY_topbar = game:GetService("StarterGui").ServerOwnersGui.GameFrame.Center.Topbar.Bar
-local PATH_LOBBY_tabs = game:GetService("StarterGui").ServerOwnersGui.GameFrame.Center.Content
-Deprecated
-]]
+local bar = game:GetService("Players").LocalPlayer.PlayerGui.ServerOwnersGui.GameFrame.Center.Topbar.Bar
 
+-- Function to create a new button in the topbar
+function createBtn(imgID, name, callback)
+    if bar:FindFirstChild(name) then
+        warn("Button '" .. name .. "' already exists!")
+        return
+    end
 
-local bar = game:GetService("Players").LocalPlayer.PlayerGui.ServerOwnersGui.GameFrame.Center.Topbar.Bar -- I got this by using Dex Explorer in lobby and this is the path for the topbar buttons
-
-function createBtn(imgID, name)
-    -- Take the server list button as an example
     local newBtn = bar.Servers:Clone()
     newBtn.Name = name
     newBtn.Image = imgID
     newBtn.Parent = bar
+
+    -- Clear old events, just in case
+    for _, conn in ipairs(getconnections(newBtn.MouseButton1Click)) do
+        conn:Disable()
+    end
+
+    -- Add new callback if provided
+    if callback then
+        newBtn.MouseButton1Click:Connect(callback)
+    end
+
     return newBtn
 end
 
-local tutBtn = createBtn("rbxassetid://18518485889", "Tutorial")
+-- Create your tutorial button with a function
+local tutBtn = createBtn("rbxassetid://18518485889", "Tutorial", function()
+    print("Tutorial button clicked!")
+end)
