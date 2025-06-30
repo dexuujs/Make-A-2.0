@@ -14,7 +14,7 @@ Deprecated
 ]]
 
 
-local bar = game:GetService("Players").LocalPlayer.PlayerGui.ServerOwnersGui.GameFrame.Center.Topbar.Bar
+local bar = game:GetService("Players").LocalPlayer.PlayerGui.ServerOwnersGui.GameFrame.Center.Topbar.Bar -- I got this by using Dex Explorer in lobby and this is the path for the topbar buttons
 
 function createBtn(imgID, name)
     -- Take the server list button as an example
