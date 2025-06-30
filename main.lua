@@ -21,6 +21,7 @@ function createBtn(imgID, name)
     local newBtn = bar.Servers:Clone()
     newBtn.Name = name
     newBtn.Image = imgID
+    newBtn.Parent = bar
     return newBtn
 end
 
